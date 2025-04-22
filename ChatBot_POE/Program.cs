@@ -105,6 +105,49 @@ namespace ChatBot_POE
             else if (input.Contains("cybersecurity"))
                 input = "what is cybersecurity";
 
+            Dictionary<string, string> responses = new Dictionary<string, string>
+            {
+                { "help", "Topics like 'password safety', 'phishing', or 'safe browsing'. Just type any of those!" },
+                { "password safety", "Use a strong password with letters, numbers, and symbols. Avoid using the same password on multiple sites!" },
+                { "phishing", "Phishing is a trick where attackers pretend to be trusted sources. Always double-check email addresses and links!" },
+                { "safe browsing", "Keep your software updated, avoid suspicious sites, and never click on pop-up ads!" },
+                { "how are you", "I'm running perfectly, thanks for asking! How can I assist you with cybersecurity today?" },
+                { "purpose of bot", "My purpose is to assist you with cybersecurity awareness. I provide tips on safe online practices!" },
+                { "what is cybersecurity", "Cybersecurity is the practice of protecting systems, networks, and data from digital attacks, theft, and damage." }
+            };
+
+            if (responses.ContainsKey(input))
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n----------------------------------------");
+                Console.WriteLine($"CBS BOT: {responses[input]}");
+                Console.WriteLine("----------------------------------------");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n----------------------------------------");
+                Console.WriteLine($"CBS BOT: Hmm... I’m not sure about that, {userName}. Would you like me to suggest a cybersecurity tip? (yes/no)");
+                Console.WriteLine("----------------------------------------");
+
+                string reply = Console.ReadLine()?.ToLower().Trim();
+
+                if (reply == "yes")
+                {
+                    SuggestCyberTip(); // Still calling your tip suggestion method
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n----------------------------------------");
+                    Console.WriteLine("CBS BOT: No worries! You can ask about password safety, phishing, or safe browsing.");
+                    Console.WriteLine("----------------------------------------");
+                }
+            }
         }
+
+        
+
     }
 }
+
