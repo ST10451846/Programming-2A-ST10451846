@@ -134,7 +134,7 @@ namespace ChatBot_POE
 
                 if (reply == "yes")
                 {
-                    SuggestCyberTip(); // Still calling your tip suggestion method
+                    SuggestCyberTips(); // Still calling your tip suggestion method
                 }
                 else
                 {
@@ -146,7 +146,33 @@ namespace ChatBot_POE
             }
         }
 
-        
+        static void SuggestCyberTips()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("CBS BOT: What area do you want a tip on? (password/phishing/browsing)");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            string topic = Console.ReadLine()?.ToLower().Trim();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            if (topic == "password")
+            {
+                Console.WriteLine("Cyber Tip: Use a password manager to keep your credentials secure and never share your passwords!");
+            }
+            else if (topic == "phishing")
+            {
+                Console.WriteLine("Cyber Tip: Don’t fall for urgent emails asking for login info. Always verify the sender.");
+            }
+            else if (topic == "browsing")
+            {
+                Console.WriteLine("Cyber Tip: Use incognito mode when necessary and always log out from public computers.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("CBS BOT: That topic isn't recognized. Try 'password', 'phishing', or 'browsing'.");
+            }
+        }
 
     }
 }
