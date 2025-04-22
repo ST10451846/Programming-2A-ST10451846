@@ -67,5 +67,44 @@ namespace ChatBot_POE
             }
 
         }
+        static void PlayWelcomeAudio(string fileName)
+        {
+            try
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+
+                if (File.Exists(path))
+                {
+                    SoundPlayer player = new SoundPlayer(path);
+                    player.PlaySync(); // ensures that the audio is in sync
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Audio file '{fileName}' not found."); // if audio can't be found
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error playing audio: {ex.Message}"); // An error has occured in the audio
+            }
+        }
+
+        static void HandleUserQuery(string input, string userName)
+        {
+            // Normalize common phrases to known topics
+            if (input.Contains("password"))
+                input = "password safety";
+            else if (input.Contains("browsing"))
+                input = "safe browsing";
+            else if (input.Contains("how are you"))
+                input = "how are you";
+            else if (input.Contains("purpose"))
+                input = "purpose of bot";
+            else if (input.Contains("cybersecurity"))
+                input = "what is cybersecurity";
+
+        }
     }
 }
